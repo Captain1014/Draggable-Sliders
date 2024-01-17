@@ -1,0 +1,237 @@
+@font-face {
+    font-family: 'LeJeuneDeck-Regular';
+    src: url('./public/fonts/LeJeuneDeck-Regular.ttf') format('truetype');
+    
+}
+@font-face {
+    font-family: 'FoundersGrotesk-Regular';
+    src: url('./public/fonts/FoundersGrotesk-Regular.otf') format('truetype');
+    
+}
+
+
+body {
+    background-color: rgb(253, 242, 249);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    font-family: 'LeJeuneDeck-Regular', sans-serif; /* Fallback to a generic sans-serif font */
+}
+
+.slider {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    user-select: none;
+    padding: 0 5vw;
+    width: fit-content;
+}
+
+.slide {
+    width: 20vw;
+    height: 500px;
+    margin: 0 5vw;
+    position: relative;
+    transition: all .7s ease;
+    -webkit-transition: all .7s ease;
+    -moz-transition: all .7s ease;
+    -ms-transition: all .7s ease;
+    -o-transition: all .7s ease;
+}
+
+.slide > .photo {
+    width: inherit;
+    height: inherit;
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    
+  box-shadow: 0 20px 10px rgba(0,0,0,0.1), 
+    0 2px 2px rgba(0,0,0,0.1), 
+    0 4px 4px rgba(0,0,0,0.1), 
+    0 8px 8px rgba(0,0,0,0.1),
+    0 16px 16px rgba(0,0,0,0.1);
+}
+
+.slide .photo > video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.slide > .text {
+    position: absolute;
+    bottom: 0%;
+    right: 0px;
+
+    margin-left: 5px;
+    color: white;
+
+    opacity: 0; /* Initially set opacity to 0 */
+    transition: opacity .4s ease, transform .4s ease;
+    -webkit-transition: opacity .4s ease, transform .4s ease;
+    -moz-transition: opacity .4s ease, transform .4s ease;
+    -ms-transition: opacity .4s ease, transform .4s ease;
+    -o-transition: opacity .4s ease, transform .4s ease;
+}
+
+.slide:hover > .text {
+    opacity: 1;
+    transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+}
+
+
+.slide > .text h2 {
+    
+    font-size: 1.8rem;
+    margin-bottom: 0;
+    padding: 5px;
+    
+}
+
+.slide > .text p {
+    font-family: 'FoundersGrotesk-Regular' , sans-serif;
+    font-size: 1.2rem;
+    margin-top: .5rem;
+    margin-left: 3px;
+}
+
+/* slide numbers */
+.slide .photo::before {
+    content: '';
+    position: absolute;
+    color: rgb(0, 0, 0);
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    top: 40px;
+    left: -25px;
+}
+
+.slide:nth-child(1) .photo::before {
+    content: '1 | 5';
+}
+.slide:nth-child(2) .photo::before {
+    content: '2 | 5';
+}
+.slide:nth-child(3) .photo::before {
+    content: '3 | 5';
+}
+.slide:nth-child(4) .photo::before {
+    content: '4 | 5';
+}
+.slide:nth-child(5) .photo::before {
+    content: '5 | 5';
+}
+
+/* Press animation */
+.slider:active {
+    cursor: grabbing;
+}
+
+.slider:active .slide {
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    margin: 0 0;
+}
+.slider:active .slide .text {
+    transform: translationX(-40%);
+    -webkit-transform: translationX(-40%);
+    -moz-transform: translationX(-40%);
+    -ms-transform: translationX(-40%);
+    -o-transform: translationX(-40%);
+}
+
+.text-js{
+    opacity: 0;
+  }
+  .cursor{
+    
+    position: absolute;
+
+    top: 10%;
+   left: 50%;
+    width: 2px;
+  
+    z-index: 1;
+    animation: flash 0.5s none infinite alternate;
+  }
+  @keyframes flash{
+    0%{
+      opacity: 1;
+    }
+    100%{
+      opacity: 0;
+    }
+  }
+
+
+  #drag{
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10%;
+    left: 37.5%;
+  }
+
+  #drag span{
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    transform: translateY(50px);
+    opacity: 0.5;
+    animation-name: titleAnimation;
+    animation-timing-function:ease;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    -webkit-transform: translateY(50px);
+    -moz-transform: translateY(50px);
+    -ms-transform: translateY(50px);
+    -o-transform: translateY(50px);
+}
+
+
+  @keyframes titleAnimation {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+      -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+      clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+  }
+  20% {
+      transform: translateY(0);
+      opacity: 1;
+      -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+      clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+  }
+  80% {
+       transform: translateY(20px);
+       opacity: 1;
+       -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+       clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+       -webkit-transform: translateY(20px);
+       -moz-transform: translateY(20px);
+       -ms-transform: translateY(20px);
+       -o-transform: translateY(20px);
+}
+  100% {
+       transform: translateY(50px);
+       opacity: 0;
+      -webkit-clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);
+      clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);
+    
+  }
+}
